@@ -73,3 +73,10 @@
             gap: 5px;
             
         }
+         #dialog div {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            gap: 10px;
+            position: relative;
+        }
