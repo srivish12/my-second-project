@@ -1,0 +1,44 @@
+  
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: rgb(42, 81, 14);
+             }
+        #workspace{
+            border: 5px solid black;
+            width: 80vw;
+            min-height: 40vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: rgb(186, 235, 151)
+        }
+             
+
+
+        h1 {
+            color: red;
+            display: flex;
+            gap: 25px;
+        }
+
+        .budgetbutton {
+            background-color: rgb(243, 86, 86);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
