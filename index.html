@@ -12,7 +12,26 @@
 
     <button id="insertBtn" class="budgetbutton"> Insert Transactions +</button>
 
-
+<div id="dialog">
+        <div>
+           <form>
+            <label for="date">Date/Time</label>
+            <input type="datetime-local" id="date" />
+            <br>
+            <label for="description">Description</label>
+            <input type="text" id="description" />
+            <br>
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" step=".01" />
+           </form>
+            <br>
+            <div id="buttons">
+                <button id="incomeBtn">Income</button>
+                <button id="expenseBtn">Expense</button>
+            </div>
+            <button id="close">X</button>
+        </div>
+    </div>
 
 
     
