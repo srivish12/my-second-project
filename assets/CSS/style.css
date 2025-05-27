@@ -65,6 +65,15 @@
         label {
             display: inline-block;
             width: 100px;
+            font-weight: bold;
+        }
+     
+         #dialog div {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            gap: 10px;
+            position: relative;
         }
 
         #buttons {
@@ -73,10 +82,36 @@
             gap: 5px;
             
         }
-         #dialog div {
-            background-color: white;
-            padding: 30px;
+        #buttons button {
+            margin: 5px 0;
+            padding: 10px;
+            flex-grow: 1;
+            font-size: 1em;
+            color: white;
             border-radius: 10px;
-            gap: 10px;
-            position: relative;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #incomeBtn{
+            background-color: green;
+            
+        }
+
+        #expenseBtn{
+            background-color: red;
+            
+          }
+        
+        #close{
+            display: flex;
+            position:absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            border:none;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            padding: 10px;
+            color: white;
         }
