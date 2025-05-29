@@ -115,9 +115,12 @@
             padding: 10px;
             color: white;
         }
+
+       
         table{
             border-collapse: collapse;
             width: 100%;
+          
         }
         th,td{
             border: 1px solid black;
@@ -125,6 +128,14 @@
             text-align: center;
 
         }
+        th{
+            background-color: aliceblue;
+        }
         tfoot td{
             text-align: right;
         }
+         tbody td:nth-child(3) {
+            text-align: right;
+            font-weight: bold;
+        }
+        
