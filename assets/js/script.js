@@ -21,6 +21,10 @@ function setNow(){
 }
 setNow();
 
+function saveRecord(type){
+
+}
+
 document.getElementById("incomeBtn").addEventListener("click",()=>{
     saveRecord("income");
 });
