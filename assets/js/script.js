@@ -25,9 +25,9 @@ setNow();
 function saveRecord(type){
     let val;
     if(type == "income"){
-        val=amount.value;
+        val=parseFloat(amount.value);
     }else {
-    val=-amount.value;
+    val=-parseFloat(amount.value);
     }
     let record={
         date:new Date(date.value),
