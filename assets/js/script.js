@@ -1,6 +1,7 @@
 const dialog= document.getElementById("dialog");
 const insertBtn =document.getElementById("insertBtn");
 const date= document.getElementById("date");
+const amount=document.getElementById("amount");
 
 insertBtn.addEventListener("click",()=> {
     dialog.style.display="flex";
@@ -22,12 +23,24 @@ function setNow(){
 setNow();
 
 function saveRecord(type){
-
-}
+    let val;
+    if(type == "income"){
+        val=amount.value;
+    }else {
+    val=-amount.value;
+    }
+    let record={
+        date:new Date(date.value),
+        description:description.value,
+        amount:val
+    };
+    console.log(record);
+} 
 
 document.getElementById("incomeBtn").addEventListener("click",()=>{
     saveRecord("income");
 });
-document.getElementById("expenceBtn").addEventListener("click",()=>{
-    saveRecord("expence");
+
+document.getElementById("expenseBtn").addEventListener("click",()=>{
+    saveRecord("expense");
 });
