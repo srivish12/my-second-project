@@ -2,6 +2,7 @@ const dialog = document.getElementById("dialog");
 const insertBtn = document.getElementById("insertBtn");
 const date = document.getElementById("date");
 const amount = document.getElementById("amount");
+let records=[];
 
 insertBtn.addEventListener("click", () => {
   dialog.style.display = "flex";
@@ -35,6 +36,8 @@ function saveRecord(type) {
     amount: val,
   };
   console.log(record);
+  records.push(record);
+  dialog.style.display='none';
 }
 
 document.getElementById("incomeBtn").addEventListener("click", () => {
