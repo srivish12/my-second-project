@@ -122,6 +122,8 @@
             width: 100%;
           
         }
+                   
+        
         th,td{
             border: 1px solid black;
             padding: 6px;
@@ -137,5 +139,38 @@
          tbody td:nth-child(3) {
             text-align: right;
             font-weight: bold;
+
         }
+
+        @media screen and (max-width :426px){
+            .table-response{
+           overflow-x:auto ;
+           
+        }
+        tbody td:nth-child(3){
+             text-align: center;
+        }
+        tfoot td{
+             text-align: center;
+        }
+
+
+            table,
+            thead,
+            tbody,
+            tfoot,
+            th,
+            td,
+            tr {
+                display: block;
+                width: 100%;
+               
+            }
+            
+        }
+
+         
+           
+         
+            
         

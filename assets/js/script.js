@@ -47,3 +47,7 @@ document.getElementById("incomeBtn").addEventListener("click", () => {
 document.getElementById("expenseBtn").addEventListener("click", () => {
   saveRecord("expense");
 });
+
+function displayRecords(){
+    
+}
