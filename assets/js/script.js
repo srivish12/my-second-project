@@ -2,7 +2,9 @@ const dialog = document.getElementById("dialog");
 const insertBtn = document.getElementById("insertBtn");
 const date = document.getElementById("date");
 const amount = document.getElementById("amount");
+const description = document.getElementById("description");
 const tableBody = document.getElementById("tableBody");
+
 
 let records=[];
 
@@ -59,6 +61,13 @@ function displayRecords(){
 
     tableBody.innerHTML="";
     records.forEach((record,index)=>{
-        let clone = document.getElementById()
+        let clone = document.getElementById("rowTemplate").content.cloneNode(true);
+        clone.querySelector(".date-time").textContent= record.date;
+        clone.querySelector(".description").textContent= record.description;
+        clone.querySelector(".amountOfTransactions").textContent= record.amount;
+
+         tableBody.appendChild(clone);
+
+
     })
 }
