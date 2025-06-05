@@ -43,7 +43,7 @@
             <th>Amendments</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tableBody">
         <tr>
             <td>2025-05-27 T 10:30 a.m</td>
             <td>Wages</td>
@@ -72,8 +72,15 @@
         </tr>
     </tfoot>
 </table>
+      <template id="rowTemplate">
+        <tr>
+            <td class="date-time"></td>
+            <td class="description"></td>
+            <td class="amount"></td>
+        </tr>
+      </template>
+ 
         
-
       <script src="/assets/js/script.js"></script>
     </div>
 

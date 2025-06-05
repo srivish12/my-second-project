@@ -2,6 +2,8 @@ const dialog = document.getElementById("dialog");
 const insertBtn = document.getElementById("insertBtn");
 const date = document.getElementById("date");
 const amount = document.getElementById("amount");
+const tableBody = document.getElementById("tableBody");
+
 let records=[];
 
 insertBtn.addEventListener("click", () => {
@@ -38,7 +40,12 @@ function saveRecord(type) {
   console.log(record);
   records.push(record);
   dialog.style.display='none';
+
+  displayRecords();
+
 }
+
+
 
 document.getElementById("incomeBtn").addEventListener("click", () => {
   saveRecord("income");
@@ -49,5 +56,9 @@ document.getElementById("expenseBtn").addEventListener("click", () => {
 });
 
 function displayRecords(){
-    
+
+    tableBody.innerHTML="";
+    records.forEach((record,index)=>{
+        let clone = document.getElementById()
+    })
 }
