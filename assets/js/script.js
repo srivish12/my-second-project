@@ -41,6 +41,9 @@ function saveRecord(type) {
   };
   console.log(record);
   records.push(record);
+
+  localStorage.setItem("records",JSON.stringify(record));
+
   dialog.style.display='none';
 
   displayRecords();
@@ -58,6 +61,9 @@ document.getElementById("expenseBtn").addEventListener("click", () => {
 });
 
 function displayRecords(){
+
+    records = localStorage.getItem("records");
+    
 
     tableBody.innerHTML="";
     records.forEach((record,index)=>{
