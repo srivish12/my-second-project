@@ -64,7 +64,7 @@ function displayRecords(){
         let clone = document.getElementById("rowTemplate").content.cloneNode(true);
         clone.querySelector(".date-time").textContent= record.date;
         clone.querySelector(".description").textContent= record.description;
-        clone.querySelector(".amountOfTransactions").textContent= record.amount;
+        clone.querySelector(".amountOfTransactions").textContent= record.amount.toFixed(2);
 
          tableBody.appendChild(clone);
 
