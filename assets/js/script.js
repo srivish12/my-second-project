@@ -76,7 +76,7 @@ function displayRecords(){
         let clone = document.getElementById("rowTemplate").content.cloneNode(true);
         clone.querySelector(".date-time").textContent= new Date(record.date).toLocaleString();
         clone.querySelector(".description").textContent= record.description;
-        clone.querySelector(".amountOfTransactions").textContent= record.amount.toFixed(2);
+        clone.querySelector(".amountOfTransaction").textContent= record.amount.toFixed(2);
 
         clone.querySelector(".edit").addEventListener('click',()=>{
           setDate(new Date(record.date));
@@ -88,6 +88,9 @@ function displayRecords(){
 
         })
         clone.querySelector(".delete").addEventListener('click',()=>{
+          if (!confirm("Are you sure?")){
+            return;
+          }
          records.splice(index,1);
          localStorage.setItem("records",JSON.stringify(records));
         displayRecords();
