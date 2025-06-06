@@ -16,8 +16,7 @@ document.getElementById("close").addEventListener("click", () => {
   dialog.style.display = "none";
 });
 
-function setNow() {
-  let now = new Date();
+function setDate(now= new Date()) {
   let year = now.getFullYear();
   let month = (now.getMonth() + 1).toString().padStart(2, "0");
   let day = now.getDate().toString().padStart(2, "0");
@@ -25,7 +24,7 @@ function setNow() {
   let minutes = now.getMinutes().toString().padStart(2, "0");
   date.value = `${year}-${month}-${day}T${hours}:${minutes}`;
 }
-setNow();
+setDate();
 
 function saveRecord(type) {
   let val;
@@ -42,9 +41,12 @@ function saveRecord(type) {
   console.log(record);
   records.push(record);
 
-  localStorage.setItem("records",JSON.stringify(record));
+  localStorage.setItem("records",JSON.stringify(records));
 
   dialog.style.display='none';
+  setDate();
+  description.value="";
+  amount.value="";
 
   displayRecords();
 
@@ -63,17 +65,36 @@ document.getElementById("expenseBtn").addEventListener("click", () => {
 function displayRecords(){
 
     records = localStorage.getItem("records");
-    
+    if(records){
+      records = JSON.parse(records);
+    } else{
+      records=[];
+    }
 
     tableBody.innerHTML="";
-    records.forEach((record,index)=>{
+    records.forEach((record, index )=>{
         let clone = document.getElementById("rowTemplate").content.cloneNode(true);
-        clone.querySelector(".date-time").textContent= record.date;
+        clone.querySelector(".date-time").textContent= new Date(record.date).toLocaleString();
         clone.querySelector(".description").textContent= record.description;
         clone.querySelector(".amountOfTransactions").textContent= record.amount.toFixed(2);
 
-         tableBody.appendChild(clone);
+        clone.querySelector(".edit").addEventListener('click',()=>{
+          setDate(new Date(record.date));
+          description.value= record.description;
+          amount.value= record.amount;
+          dialog.style.display= "flex";
+          records.splice(index,1);
+          localStorage.setItem("records",JSON.stringify(records));
 
+        })
+        clone.querySelector(".delete").addEventListener('click',()=>{
+         records.splice(index,1);
+         localStorage.setItem("records",JSON.stringify(records));
+        displayRecords();
+        })
+
+         tableBody.appendChild(clone);
 
     })
 }
+    displayRecords();
