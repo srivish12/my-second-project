@@ -1,14 +1,13 @@
 const dialog = document.getElementById("dialog");
-const insertBtn = document.getElementById("insertBtn");
+const insertRecordBtn = document.getElementById("insertBtn");
 const date = document.getElementById("date");
 const amount = document.getElementById("amount");
 const description = document.getElementById("description");
 const tableBody = document.getElementById("tableBody");
 
+let records = [];
 
-let records=[];
-
-insertBtn.addEventListener("click", () => {
+insertRecordBtn.addEventListener("click", () => {
   dialog.style.display = "flex";
 });
 
@@ -16,7 +15,7 @@ document.getElementById("close").addEventListener("click", () => {
   dialog.style.display = "none";
 });
 
-function setDate(now= new Date()) {
+function setDate(now = new Date()) {
   let year = now.getFullYear();
   let month = (now.getMonth() + 1).toString().padStart(2, "0");
   let day = now.getDate().toString().padStart(2, "0");
@@ -27,77 +26,99 @@ function setDate(now= new Date()) {
 setDate();
 
 function saveRecord(type) {
-  let val;
-  if (type == "income") {
-    val = parseFloat(amount.value);
-  } else {
-    val = -parseFloat(amount.value);
-  }
-  let record = {
-    date: new Date(date.value),
-    description: description.value,
-    amount: val,
-  };
-  console.log(record);
-  records.push(record);
+  if (amount.value) {
+    let val = parseFloat(amount.value);
 
-  localStorage.setItem("records",JSON.stringify(records));
-
-  dialog.style.display='none';
-  setDate();
-  description.value="";
-  amount.value="";
-
-  displayRecords();
-
-}
-
-
-
-document.getElementById("incomeBtn").addEventListener("click", () => {
-  saveRecord("income");
-});
-
-document.getElementById("expenseBtn").addEventListener("click", () => {
-  saveRecord("expense");
-});
-
-function displayRecords(){
-
-    records = localStorage.getItem("records");
-    if(records){
-      records = JSON.parse(records);
-    } else{
-      records=[];
+    if (type === "expense") {
+      val = -val;
     }
 
-    tableBody.innerHTML="";
-    records.forEach((record, index )=>{
-        let clone = document.getElementById("rowTemplate").content.cloneNode(true);
-        clone.querySelector(".date-time").textContent= new Date(record.date).toLocaleString();
-        clone.querySelector(".description").textContent= record.description;
-        clone.querySelector(".amountOfTransaction").textContent= record.amount.toFixed(2);
+    let record = {
+      date: new Date(date.value),
+      description: description.value,
+      amount: val,
+    };
+    console.log(record);
+    records.push(record);
 
-        clone.querySelector(".edit").addEventListener('click',()=>{
-          setDate(new Date(record.date));
-          description.value= record.description;
-          amount.value= record.amount;
-          dialog.style.display= "flex";
-          records.splice(index,1);
-          localStorage.setItem("records",JSON.stringify(records));
+    localStorage.setItem("records", JSON.stringify(records));
 
-        })
-        clone.querySelector(".delete").addEventListener('click',()=>{
-          if (!confirm("Are you sure?")){
-            return;
-          }
-         records.splice(index,1);
-         localStorage.setItem("records",JSON.stringify(records));
-        displayRecords();
-        })
+    dialog.style.display = "none";
+    setDate();
+    description.value = "";
+    amount.value = "";
 
-         tableBody.appendChild(clone);
-
-    })
-}
     displayRecords();
+  } else {
+    alert("missing amount?");
+  }
+}
+
+document
+  .getElementById("incomeBtn")
+  .addEventListener("click", () => saveRecord("income"));
+
+document
+  .getElementById("expenseBtn")
+  .addEventListener("click", () => saveRecord("expense"));
+
+function displayRecords() {
+  let totalRemain = 0;
+  let totalIncome = 0;
+  let totalExpenditure = 0;
+  records = localStorage.getItem("records");
+  if (records) {
+    records = JSON.parse(records);
+  } else {
+    records = [];
+  }
+
+  tableBody.innerHTML = "";
+  console.log(records);
+
+  records.forEach((record, index) => {
+    record.amount = parseFloat(record.amount);
+    totalRemain += record.amount;
+    if (record.amount > 0) {
+      totalIncome += record.amount;
+    } else {
+      totalExpenditure += record.amount;
+    }
+
+    let clone = document.getElementById("rowTemplate").content.cloneNode(true);
+    clone.querySelector(".date-time").textContent = new Date(
+      record.date
+    ).toLocaleString();
+    clone.querySelector(".description").textContent = record.description;
+    if (record.amount) {
+      clone.querySelector(".amountOfTransaction").textContent =
+        record.amount.toFixed(2);
+    }
+
+    clone.querySelector(".edit").addEventListener("click", () => {
+      setDate(new Date(record.date));
+      description.value = record.description;
+      amount.value = record.amount;
+      dialog.style.display = "flex";
+      records.splice(index, 1);
+      localStorage.setItem("records", JSON.stringify(records));
+    });
+
+    clone.querySelector(".delete").addEventListener("click", () => {
+      if (!confirm("Are you sure?")) {
+        return;
+      }
+      records.splice(index, 1);
+      localStorage.setItem("records", JSON.stringify(records));
+      displayRecords();
+    });
+
+    tableBody.appendChild(clone);
+  });
+  document.getElementById("totalIncome").textContent = totalIncome.toFixed(2);
+  document.getElementById("totalExpenditure").textContent =
+    totalExpenditure.toFixed(2);
+  document.getElementById("totalRemain").textContent = totalRemain.toFixed(2);
+}
+
+displayRecords();
