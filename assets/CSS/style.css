@@ -25,6 +25,7 @@ body {
 }
 
 h1 {
+    text-align: center;
   color: red;
   display: flex;
   gap: 25px;

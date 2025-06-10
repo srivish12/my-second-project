@@ -38,7 +38,7 @@ function saveRecord(type) {
       description: description.value,
       amount: val,
     };
-    console.log(record);
+    
     records.push(record);
 
     localStorage.setItem("records", JSON.stringify(records));
@@ -50,7 +50,7 @@ function saveRecord(type) {
 
     displayRecords();
   } else {
-    alert("missing amount?");
+    alert("missing date, Description or amount?");
   }
 }
 
