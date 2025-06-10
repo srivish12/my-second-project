@@ -74,7 +74,6 @@ function displayRecords() {
   }
 
   tableBody.innerHTML = "";
-  console.log(records);
 
   records.forEach((record, index) => {
     record.amount = parseFloat(record.amount);
