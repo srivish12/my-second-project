@@ -50,7 +50,7 @@ function saveRecord(type) {
 
     displayRecords();
   } else {
-    alert("missing date, Description or amount?");
+    alert("missing amount?");
   }
 }
 
